@@ -1,0 +1,38 @@
+﻿@model IEnumerable<PhoneBookApplication.Models.ContactCategory>
+
+@{
+    ViewBag.Title = "ContactCategories";
+}
+
+<h2>ContactCategories</h2>
+
+<p>@Html.ActionLink("Create New","Create")</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </th>
+    </tr>
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(item.CategoryName,"ContactDetails",new { id=item.CategoryId})
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.CategoryId })
+                @Html.ActionLink("Delete", "Delete", new { id = item.CategoryId })
+            </td>
+        </tr>
+    }
+</table>
+
+@if(TempData["msg"]!=null)
+{
+    @TempData["msg"].ToString()
+}
+
